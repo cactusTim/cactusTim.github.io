@@ -14259,17 +14259,18 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1>Data Science Pipeline Tutorial:<br>What Are the Rising National Film Industries?</h1>
+<h1>Data Science Pipeline Tutorial:<br>What Are the World's Rising National Film Industries?</h1>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p style="color:red;">filler description - replace me</p>
+<p>One of the classes I took this semester was FILM298D: Film Art in a Global Society. The course was, as you might guess, about cinema around the globe, giving a broad view of modern film industries across many countries. I got to see a lot of good movies, but I was saddened to see that most of them were not well known outside of film festivals and critical circles, as most countries' everyday movie theaters and streaming options are dominated by American and other Anglophone films. However, I also heard that the national film industries of many non-Anglophone countries are growing, and this inspired me to look at the data of global film production to determine just which countries' film industries are rising and how. In this tutorial I will seek to determine which countries' film industries are growing the fastest, in terms of total pictures produced annually, pictures produced intranationally, and pictures produced via international coproductions.</p>
+
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Tim Hicks</p>
+<p><em>Tim Hicks</em></p>
 
 </div>
 </div>
@@ -14278,7 +14279,8 @@ a.anchor-link {
 <p><h2>Outline</h2></p>
 <ol>
   <li>Data Scraping</li>
-    <ol><li>Managing the Data</li></ol>
+    <ol><li>Managing the Data</li>
+    <li>Tidying the Data</li></ol>
   <li>Data Representation</li>
   <li>Data Analysis</li>
   <li>Hypothesis Testing and Machine Learning</li>
@@ -14289,7 +14291,8 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p style="color:red;">First is this stuff</p>
+<p>Here are all of the libraries we will use in our analysis:</p>
+
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
@@ -14301,8 +14304,6 @@ a.anchor-link {
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="k">as</span> <span class="nn">cm</span>
-<span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">colors</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
 </pre></div>
 
@@ -14319,7 +14320,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>We will be getting national film data from the UNESCO Institute for Statistics, available at <a href="http://data.uis.unesco.org/">http://data.uis.unesco.org/</a>. The table I want to use is "Culture/Feature Films/Feature Films (full dataset)". I have downloaded the table and have reuploaded it to GitHub for use here.</p>
+<p>We will be getting national film data from the UNESCO Institute for Statistics, available at <a href="http://data.uis.unesco.org/">http://data.uis.unesco.org/</a>. The table I want to use is "Culture/Feature Films/Feature Films (full dataset)". I have downloaded the table and have reuploaded it to GitHub for use here. This data set covers the film production of most countries in the world from 2011 to 2017.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -14527,12 +14528,1285 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>The table above has several columns that are redundant and/or useless for our purposes, so I am dropping them here so we won't have to look at them anymore.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;INDICATOR&#39;</span><span class="p">,</span><span class="s1">&#39;LOCATION&#39;</span><span class="p">,</span><span class="s1">&#39;TIME&#39;</span><span class="p">,</span><span class="s1">&#39;Flag Codes&#39;</span><span class="p">,</span><span class="s1">&#39;Flags&#39;</span><span class="p">])</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3>Managing the Data</h3>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p style="color:red;">That's a lot of data, etc. Let's cut it down to the parts we want</p>
+<p>At over 30,000 rows of information, we suddenly have a lot of data! This single UNESCO table contains 76 different categories—indicated by the "Indicator" column—of information on feature film production, distribution of feature films, cinema infrastructure, and exhibition of feature films, and while all of it is interesting, most of it is extraneous for our purposes here. So, to make this data set more managable, I will extract three smaller tables containing the information we want. We can discard the rest.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>What is the information we want? In this analysis we are looking at three main figures:</p>
+<p><ul>
+    <li>Total number of feature films produced by each country each year</li>
+    <li>Number of feature films that are produced 100% intranationally by each country each year</li>
+    <li>Number of feature films that are produced as international coproductions by each country each year</li>
+</ul>
+To be "produced by" a given country, at least one of a film's producers must be of that country. The film does not have to be shot, edited, or anything else in that country, merely funded there. This means that films that are international coproductions have multiple producers of multiple national origins.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>First, the total number of feature films produced by each country each year. This value will be equal to the sum of the intranational productions and the coproductions of each country each year, so we technically don't have to extract this table at all if we don't want to, since we can just derive the value ourselves from our other data, but since UNESCO gives us these values already, we might as well do so and save ourselves the math later. To get this table, I make a copy of our dataframe, but only the rows for which the "Indicator" column reads 'Total number of national feature films produced'.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">natfilms</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Indicator&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Total number of national feature films produced&#39;</span><span class="p">]</span>
+<span class="n">natfilms</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Indicator</th>
+      <th>Country</th>
+      <th>Time</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>459</th>
+      <td>Total number of national feature films produced</td>
+      <td>Australia</td>
+      <td>2011</td>
+      <td>43.0</td>
+    </tr>
+    <tr>
+      <th>460</th>
+      <td>Total number of national feature films produced</td>
+      <td>Australia</td>
+      <td>2012</td>
+      <td>29.0</td>
+    </tr>
+    <tr>
+      <th>461</th>
+      <td>Total number of national feature films produced</td>
+      <td>Australia</td>
+      <td>2013</td>
+      <td>26.0</td>
+    </tr>
+    <tr>
+      <th>462</th>
+      <td>Total number of national feature films produced</td>
+      <td>Australia</td>
+      <td>2014</td>
+      <td>39.0</td>
+    </tr>
+    <tr>
+      <th>463</th>
+      <td>Total number of national feature films produced</td>
+      <td>Australia</td>
+      <td>2015</td>
+      <td>33.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>30581</th>
+      <td>Total number of national feature films produced</td>
+      <td>Suriname</td>
+      <td>2017</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31258</th>
+      <td>Total number of national feature films produced</td>
+      <td>Qatar</td>
+      <td>2016</td>
+      <td>54.0</td>
+    </tr>
+    <tr>
+      <th>31259</th>
+      <td>Total number of national feature films produced</td>
+      <td>Qatar</td>
+      <td>2017</td>
+      <td>54.0</td>
+    </tr>
+    <tr>
+      <th>31260</th>
+      <td>Total number of national feature films produced</td>
+      <td>Saint Vincent and the Grenadines</td>
+      <td>2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31261</th>
+      <td>Total number of national feature films produced</td>
+      <td>Saint Vincent and the Grenadines</td>
+      <td>2017</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>650 rows × 4 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>There. Reducing a table from 31392 rows to 650 rows feels good, doesn't it? Like you're Pygmalion, chiseling off a huge chunk of ivory as you are begin to carve a brand new statue. I'm guessing. I've never chiseled anything in my life. Anyway, now that this table is able to stand alone, we should also drop the "Indicator" column, since it is no longer providing useful information.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">natfilms</span> <span class="o">=</span> <span class="n">natfilms</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Indicator&#39;</span><span class="p">])</span>
+<span class="n">natfilms</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country</th>
+      <th>Time</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>459</th>
+      <td>Australia</td>
+      <td>2011</td>
+      <td>43.0</td>
+    </tr>
+    <tr>
+      <th>460</th>
+      <td>Australia</td>
+      <td>2012</td>
+      <td>29.0</td>
+    </tr>
+    <tr>
+      <th>461</th>
+      <td>Australia</td>
+      <td>2013</td>
+      <td>26.0</td>
+    </tr>
+    <tr>
+      <th>462</th>
+      <td>Australia</td>
+      <td>2014</td>
+      <td>39.0</td>
+    </tr>
+    <tr>
+      <th>463</th>
+      <td>Australia</td>
+      <td>2015</td>
+      <td>33.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>30581</th>
+      <td>Suriname</td>
+      <td>2017</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31258</th>
+      <td>Qatar</td>
+      <td>2016</td>
+      <td>54.0</td>
+    </tr>
+    <tr>
+      <th>31259</th>
+      <td>Qatar</td>
+      <td>2017</td>
+      <td>54.0</td>
+    </tr>
+    <tr>
+      <th>31260</th>
+      <td>Saint Vincent and the Grenadines</td>
+      <td>2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31261</th>
+      <td>Saint Vincent and the Grenadines</td>
+      <td>2017</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>650 rows × 3 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Nice.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Next, we do the same thing for the number of feature films that are produced 100% intranationally by each country each year:</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intrafilms</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Indicator&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Number of feature films 100% nationally produced&#39;</span><span class="p">]</span>
+<span class="n">intrafilms</span> <span class="o">=</span> <span class="n">intrafilms</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Indicator&#39;</span><span class="p">])</span>
+<span class="n">intrafilms</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country</th>
+      <th>Time</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3724</th>
+      <td>Australia</td>
+      <td>2011</td>
+      <td>39.0</td>
+    </tr>
+    <tr>
+      <th>3725</th>
+      <td>Australia</td>
+      <td>2012</td>
+      <td>26.0</td>
+    </tr>
+    <tr>
+      <th>3726</th>
+      <td>Australia</td>
+      <td>2013</td>
+      <td>24.0</td>
+    </tr>
+    <tr>
+      <th>3727</th>
+      <td>Australia</td>
+      <td>2014</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>3728</th>
+      <td>Australia</td>
+      <td>2015</td>
+      <td>32.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>30708</th>
+      <td>Suriname</td>
+      <td>2017</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31298</th>
+      <td>Qatar</td>
+      <td>2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31299</th>
+      <td>Qatar</td>
+      <td>2017</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31300</th>
+      <td>Saint Vincent and the Grenadines</td>
+      <td>2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31301</th>
+      <td>Saint Vincent and the Grenadines</td>
+      <td>2017</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>505 rows × 3 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Finally, the number of feature films that are produced as international coproductions by each country each year:</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cofilms</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Indicator&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Number of internationally coproduced feature films&#39;</span><span class="p">]</span>
+<span class="n">cofilms</span> <span class="o">=</span> <span class="n">cofilms</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Indicator&#39;</span><span class="p">])</span>
+<span class="n">cofilms</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country</th>
+      <th>Time</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5674</th>
+      <td>Australia</td>
+      <td>2011</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>5675</th>
+      <td>Australia</td>
+      <td>2012</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>5676</th>
+      <td>Australia</td>
+      <td>2013</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>5677</th>
+      <td>Australia</td>
+      <td>2014</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>5678</th>
+      <td>Australia</td>
+      <td>2015</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>30748</th>
+      <td>Suriname</td>
+      <td>2017</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31318</th>
+      <td>Qatar</td>
+      <td>2016</td>
+      <td>54.0</td>
+    </tr>
+    <tr>
+      <th>31319</th>
+      <td>Qatar</td>
+      <td>2017</td>
+      <td>54.0</td>
+    </tr>
+    <tr>
+      <th>31320</th>
+      <td>Saint Vincent and the Grenadines</td>
+      <td>2016</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31321</th>
+      <td>Saint Vincent and the Grenadines</td>
+      <td>2017</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>497 rows × 3 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3>Tidying the Data</h3>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Now that we have just the data we want, we can begin working with it, right? If you want to, sure. But the data is still a bit obtuse, so I want to refine it a bit further. At the moment, each of our three tables has multiple rows for each year and multiple rows for each country, which makes it a bit difficult to process or even look at the data without some unnecessary stress. So to resolve that, I am pivoting each of the tables so that there is one row for each year and one column for each country. Then I am dropping the "Value" super-header, since it adds no new information. This way it will be easy to look up the number of films of any type produced by any country in any year without having to use any more code than we have to.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">natfilms</span> <span class="o">=</span> <span class="n">natfilms</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Country&#39;</span><span class="p">)</span>
+<span class="n">natfilms</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">natfilms</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">droplevel</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intrafilms</span> <span class="o">=</span> <span class="n">intrafilms</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Country&#39;</span><span class="p">)</span>
+<span class="n">intrafilms</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">intrafilms</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">droplevel</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cofilms</span> <span class="o">=</span> <span class="n">cofilms</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Country&#39;</span><span class="p">)</span>
+<span class="n">cofilms</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">cofilms</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">droplevel</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Here's our "total films per year" table with the pivot applied. The other two tables look similar enough that they don't need to be shown too:</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">natfilms</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Country</th>
+      <th>Albania</th>
+      <th>Algeria</th>
+      <th>Andorra</th>
+      <th>Angola</th>
+      <th>Argentina</th>
+      <th>Armenia</th>
+      <th>Aruba</th>
+      <th>Australia</th>
+      <th>Austria</th>
+      <th>Azerbaijan</th>
+      <th>...</th>
+      <th>Tunisia</th>
+      <th>Turkey</th>
+      <th>Ukraine</th>
+      <th>United Arab Emirates</th>
+      <th>United Kingdom of Great Britain and Northern Ireland</th>
+      <th>United States of America</th>
+      <th>Uruguay</th>
+      <th>Uzbekistan</th>
+      <th>Venezuela (Bolivarian Republic of)</th>
+      <th>Viet Nam</th>
+    </tr>
+    <tr>
+      <th>Time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2011</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>100.0</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>43.0</td>
+      <td>54.0</td>
+      <td>63.0</td>
+      <td>...</td>
+      <td>11.0</td>
+      <td>70.0</td>
+      <td>3.0</td>
+      <td>NaN</td>
+      <td>299.0</td>
+      <td>819.0</td>
+      <td>8.0</td>
+      <td>NaN</td>
+      <td>16.0</td>
+      <td>75.0</td>
+    </tr>
+    <tr>
+      <th>2012</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>141.0</td>
+      <td>24.0</td>
+      <td>NaN</td>
+      <td>29.0</td>
+      <td>54.0</td>
+      <td>69.0</td>
+      <td>...</td>
+      <td>8.0</td>
+      <td>61.0</td>
+      <td>7.0</td>
+      <td>NaN</td>
+      <td>326.0</td>
+      <td>738.0</td>
+      <td>15.0</td>
+      <td>66.0</td>
+      <td>13.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2013</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>168.0</td>
+      <td>28.0</td>
+      <td>NaN</td>
+      <td>26.0</td>
+      <td>46.0</td>
+      <td>69.0</td>
+      <td>...</td>
+      <td>8.0</td>
+      <td>85.0</td>
+      <td>12.0</td>
+      <td>NaN</td>
+      <td>241.0</td>
+      <td>738.0</td>
+      <td>11.0</td>
+      <td>53.0</td>
+      <td>21.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2014</th>
+      <td>3.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>172.0</td>
+      <td>36.0</td>
+      <td>NaN</td>
+      <td>39.0</td>
+      <td>45.0</td>
+      <td>64.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>109.0</td>
+      <td>7.0</td>
+      <td>6.0</td>
+      <td>339.0</td>
+      <td>649.0</td>
+      <td>11.0</td>
+      <td>57.0</td>
+      <td>17.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2015</th>
+      <td>7.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>182.0</td>
+      <td>37.0</td>
+      <td>NaN</td>
+      <td>33.0</td>
+      <td>40.0</td>
+      <td>53.0</td>
+      <td>...</td>
+      <td>11.0</td>
+      <td>137.0</td>
+      <td>3.0</td>
+      <td>11.0</td>
+      <td>298.0</td>
+      <td>663.0</td>
+      <td>11.0</td>
+      <td>47.0</td>
+      <td>29.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2016</th>
+      <td>NaN</td>
+      <td>21.0</td>
+      <td>NaN</td>
+      <td>6.0</td>
+      <td>199.0</td>
+      <td>37.0</td>
+      <td>NaN</td>
+      <td>42.0</td>
+      <td>46.0</td>
+      <td>59.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>135.0</td>
+      <td>20.0</td>
+      <td>69.0</td>
+      <td>317.0</td>
+      <td>656.0</td>
+      <td>NaN</td>
+      <td>81.0</td>
+      <td>26.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2017</th>
+      <td>NaN</td>
+      <td>12.0</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>220.0</td>
+      <td>28.0</td>
+      <td>NaN</td>
+      <td>55.0</td>
+      <td>44.0</td>
+      <td>53.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>148.0</td>
+      <td>19.0</td>
+      <td>85.0</td>
+      <td>285.0</td>
+      <td>660.0</td>
+      <td>NaN</td>
+      <td>92.0</td>
+      <td>16.0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>7 rows × 129 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Much easier to read. There's one more thing I want to address before we move on, and that's countries that did not produce any films of a given type at all between 2011 and 2017. Andorra is a clear example above. I guess I shouldn't expect much more from a backwater mountain principality run by a Christian bishop and the President of France when he has some spare time. Since Andorra's film industry has been completely dead for the whole period we are looking at, it is no use including it in our data, so I want to purge it and all others like it from our tables.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Dropping all columns from each table in which the number of films produced is NaN for all seven years</span>
+<span class="n">natfilms</span> <span class="o">=</span> <span class="n">natfilms</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">natfilms</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">natfilms</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="n">col</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">intrafilms</span> <span class="o">=</span> <span class="n">intrafilms</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">intrafilms</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">intrafilms</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="n">col</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cofilms</span> <span class="o">=</span> <span class="n">cofilms</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">cofilms</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">cofilms</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="n">col</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Finally, so that it doesn't mess up our math later, we replace all of the remaining <em>NaN</em> values in each table with the zeroes they were always supposed to represent.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">natfilms</span> <span class="o">=</span> <span class="n">natfilms</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">intrafilms</span> <span class="o">=</span> <span class="n">intrafilms</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cofilms</span> <span class="o">=</span> <span class="n">cofilms</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>And here's what the total films table looks like with the changes:</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">natfilms</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Country</th>
+      <th>Albania</th>
+      <th>Algeria</th>
+      <th>Angola</th>
+      <th>Argentina</th>
+      <th>Armenia</th>
+      <th>Australia</th>
+      <th>Austria</th>
+      <th>Azerbaijan</th>
+      <th>Bangladesh</th>
+      <th>Belarus</th>
+      <th>...</th>
+      <th>Tunisia</th>
+      <th>Turkey</th>
+      <th>Ukraine</th>
+      <th>United Arab Emirates</th>
+      <th>United Kingdom of Great Britain and Northern Ireland</th>
+      <th>United States of America</th>
+      <th>Uruguay</th>
+      <th>Uzbekistan</th>
+      <th>Venezuela (Bolivarian Republic of)</th>
+      <th>Viet Nam</th>
+    </tr>
+    <tr>
+      <th>Time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2011</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>100.0</td>
+      <td>5.0</td>
+      <td>43.0</td>
+      <td>54.0</td>
+      <td>63.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>...</td>
+      <td>11.0</td>
+      <td>70.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>299.0</td>
+      <td>819.0</td>
+      <td>8.0</td>
+      <td>0.0</td>
+      <td>16.0</td>
+      <td>75.0</td>
+    </tr>
+    <tr>
+      <th>2012</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>141.0</td>
+      <td>24.0</td>
+      <td>29.0</td>
+      <td>54.0</td>
+      <td>69.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>8.0</td>
+      <td>61.0</td>
+      <td>7.0</td>
+      <td>0.0</td>
+      <td>326.0</td>
+      <td>738.0</td>
+      <td>15.0</td>
+      <td>66.0</td>
+      <td>13.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2013</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>168.0</td>
+      <td>28.0</td>
+      <td>26.0</td>
+      <td>46.0</td>
+      <td>69.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>8.0</td>
+      <td>85.0</td>
+      <td>12.0</td>
+      <td>0.0</td>
+      <td>241.0</td>
+      <td>738.0</td>
+      <td>11.0</td>
+      <td>53.0</td>
+      <td>21.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2014</th>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>172.0</td>
+      <td>36.0</td>
+      <td>39.0</td>
+      <td>45.0</td>
+      <td>64.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>109.0</td>
+      <td>7.0</td>
+      <td>6.0</td>
+      <td>339.0</td>
+      <td>649.0</td>
+      <td>11.0</td>
+      <td>57.0</td>
+      <td>17.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2015</th>
+      <td>7.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>182.0</td>
+      <td>37.0</td>
+      <td>33.0</td>
+      <td>40.0</td>
+      <td>53.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>11.0</td>
+      <td>137.0</td>
+      <td>3.0</td>
+      <td>11.0</td>
+      <td>298.0</td>
+      <td>663.0</td>
+      <td>11.0</td>
+      <td>47.0</td>
+      <td>29.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2016</th>
+      <td>0.0</td>
+      <td>21.0</td>
+      <td>6.0</td>
+      <td>199.0</td>
+      <td>37.0</td>
+      <td>42.0</td>
+      <td>46.0</td>
+      <td>59.0</td>
+      <td>23.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>135.0</td>
+      <td>20.0</td>
+      <td>69.0</td>
+      <td>317.0</td>
+      <td>656.0</td>
+      <td>0.0</td>
+      <td>81.0</td>
+      <td>26.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2017</th>
+      <td>0.0</td>
+      <td>12.0</td>
+      <td>4.0</td>
+      <td>220.0</td>
+      <td>28.0</td>
+      <td>55.0</td>
+      <td>44.0</td>
+      <td>53.0</td>
+      <td>31.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>148.0</td>
+      <td>19.0</td>
+      <td>85.0</td>
+      <td>285.0</td>
+      <td>660.0</td>
+      <td>0.0</td>
+      <td>92.0</td>
+      <td>16.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>7 rows × 117 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Aw yeah. So long Andorra and crew, so long <em>NaN</em>s, hello friendly zeroes.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2>Data Representation</h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Okay, now that we are done kneading the data, we can get to the interesting parts. The first of those is creating a basic visual representation of the data so we can get a better sense of what we are working with.</p>
+
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
